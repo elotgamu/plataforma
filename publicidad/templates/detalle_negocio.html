@@ -1,0 +1,13 @@
+{% extends "layouts/default.html" %}
+{% block title %}Detalles del Negocio{% endblock title %}
+{% block body_block %}
+    <br>
+    <h3>{{ negocio.name }}</h4>
+    <h4>Descripcion</h4>
+    <p>{{ negocio.description }}</p>
+    <h4>Ubicado en: </h4>
+    <p>{{ negocio.location }}</p>
+    <h4>Contacto</h4>
+    <p>Email: {{ negocio.email }}</p>
+    <p>Telefono: {{ negocio.phone }}</p>
+{% endblock body_block %}

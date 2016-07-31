@@ -1,0 +1,13 @@
+{% extends "layouts/default.html" %}
+{% block title %}Lista de Negocios{% endblock title %}
+{% block body_block %}
+    <br>
+    <h3>Lista de negocios</h3>
+    <ul>
+        {% for negocio in negocios %}
+            <li><a href="{{ negocio.get_absolute_url }}">{{ negocio.name }}</a></li>
+        {% empty %}
+            <p>No hay negocio registrados... </p>
+        {% endfor %}
+    </ul>
+{% endblock body_block %}

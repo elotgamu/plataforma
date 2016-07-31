@@ -1,0 +1,20 @@
+{% extends "layouts/default.html" %}
+{% block title %}Nuevo Negocio{% endblock title %}
+{% block body_block %}
+    <h3>Agrega tu negocio a esta plataforma...</h3>
+    <br>
+    <br>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <h4>Datos del nuevo negocio</h4>
+        <ul>
+            {{ negocio.as_p }}
+        </ul>
+        <h4>Datos del administrador</h4>
+        <ul>
+            {{ administrator.as_p }}
+        </ul>
+        <input type="submit" name="Agregar negocio nuevo">
+    </form>
+{% endblock body_block %}

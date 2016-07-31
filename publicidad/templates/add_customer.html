@@ -1,0 +1,15 @@
+{% extends "layouts/default.html" %}
+{% block title %}Registro de nuevo cliente{% endblock title %}
+{% block body_block %}
+    <h3>Registrate como cliente en esta plataforma</h3>
+    <br>
+    <br>
+    <form action="/agregar_cliente/" method="POST">
+        {% csrf_token %}
+        <h4>Datos personales</h4>
+        <ul>
+            {{ customer.as_p }}
+        </ul>
+        <input type="submit" name="Registrarse">
+    </form>
+{% endblock body_block %}

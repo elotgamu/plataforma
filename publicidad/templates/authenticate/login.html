@@ -1,0 +1,10 @@
+{% extends "layouts/default.html" %}
+{% block title %}Inicio de sesión{% endblock title %}
+{% block body_block %}
+    {% if form.errors %}
+        <p>Tu nombre de usuario y contraseña no coinciden. Porfavor inetente nuevamente</p>
+        <form method="POST">
+
+        </form>
+    {% endif %}
+{% endblock body_block %}
