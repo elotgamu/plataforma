@@ -1,20 +1,21 @@
 {% extends "layouts/default.html" %}
+{% load bootstrap3 %}
 {% block title %}Nuevo Negocio{% endblock title %}
-{% block body_block %}
+{% block content %}
     <h3>Agrega tu negocio a esta plataforma...</h3>
     <br>
-    <br>
 
-    <form action="" method="POST">
+    <form action="" method="POST" class="form">
         {% csrf_token %}
         <h4>Datos del nuevo negocio</h4>
-        <ul>
-            {{ negocio.as_p }}
-        </ul>
+            {% bootstrap_form negocio %}
         <h4>Datos del administrador</h4>
-        <ul>
-            {{ administrator.as_p }}
-        </ul>
-        <input type="submit" name="Agregar negocio nuevo">
+            {%  bootstrap_form administrator %}
+        {% buttons %}
+            <button type="submit" name="Agregar negocio nuevo" class="btn btn-primary">
+            {% bootstrap_icon "star" %} Agregar negocio nuevo
+            </button>
+        {% endbuttons %}
     </form>
-{% endblock body_block %}
+
+{% endblock %}

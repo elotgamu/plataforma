@@ -1,6 +1,7 @@
 {% extends "layouts/default.html" %}
+{% load bootstrap3 %}
 {% block title %}Principal{% endblock %}
-{% block body_block %}
+{% block content %}
     {% if messages %}
         <ul class="messages">
             {% for message in messages %}

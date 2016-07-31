@@ -1,6 +1,7 @@
 {% extends "layouts/default.html" %}
+{% load bootstrap3 %}
 {% block title %}Lista de Negocios{% endblock title %}
-{% block body_block %}
+{% block content %}
     <br>
     <h3>Lista de negocios</h3>
     <ul>
@@ -10,4 +11,4 @@
             <p>No hay negocio registrados... </p>
         {% endfor %}
     </ul>
-{% endblock body_block %}
+{% endblock %}

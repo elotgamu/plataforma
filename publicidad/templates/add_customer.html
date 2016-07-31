@@ -1,6 +1,7 @@
 {% extends "layouts/default.html" %}
+{% load bootstrap3 %}
 {% block title %}Registro de nuevo cliente{% endblock title %}
-{% block body_block %}
+{% block content %}
     <h3>Registrate como cliente en esta plataforma</h3>
     <br>
     <br>
@@ -8,8 +9,8 @@
         {% csrf_token %}
         <h4>Datos personales</h4>
         <ul>
-            {{ customer.as_p }}
+            {% bootstrap_form customer %}
         </ul>
-        <input type="submit" name="Registrarse">
+        <button type="submit" name="Registrarse" class="btn btn-primary">Regístrate</button>
     </form>
-{% endblock body_block %}
+{% endblock %}

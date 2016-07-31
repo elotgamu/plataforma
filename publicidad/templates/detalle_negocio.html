@@ -1,6 +1,7 @@
 {% extends "layouts/default.html" %}
+{% load bootstrap3 %}
 {% block title %}Detalles del Negocio{% endblock title %}
-{% block body_block %}
+{% block content %}
     <br>
     <h3>{{ negocio.name }}</h4>
     <h4>Descripcion</h4>
@@ -10,4 +11,4 @@
     <h4>Contacto</h4>
     <p>Email: {{ negocio.email }}</p>
     <p>Telefono: {{ negocio.phone }}</p>
-{% endblock body_block %}
+{% endblock %}
