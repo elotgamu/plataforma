@@ -3,24 +3,24 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
-import negocios_publicidad.models
+import publicidad.models
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('negocios_publicidad', '0002_auto_20160715_1851'),
+        ('publicidad', '0002_auto_20160715_1851'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='administrator',
             name='key_expires',
-            field=models.DateTimeField(default=negocios_publicidad.models.set_key_expiration),
+            field=models.DateTimeField(default=publicidad.models.set_key_expiration),
         ),
         migrations.AlterField(
             model_name='customer',
             name='key_expires',
-            field=models.DateTimeField(default=negocios_publicidad.models.set_key_expiration),
+            field=models.DateTimeField(default=publicidad.models.set_key_expiration),
         ),
     ]

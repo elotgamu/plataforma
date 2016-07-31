@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from negocios_publicidad import views
+from publicidad import views
 
 urlpatterns = [
     url(r'^$', views.Home.as_view(), name='home'),

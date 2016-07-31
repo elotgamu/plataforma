@@ -108,7 +108,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=200)),
                 ('price', models.FloatField()),
-                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='negocios_publicidad.Category')),
+                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='publicidad.Category')),
             ],
             options={
                 'db_table': 'products',
@@ -126,7 +126,7 @@ class Migration(migrations.Migration):
                 ('is_active', models.BooleanField()),
                 ('valid_since', models.DateTimeField()),
                 ('expires', models.DateTimeField()),
-                ('negocio', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='negocios_publicidad.Negocio')),
+                ('negocio', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='publicidad.Negocio')),
             ],
             options={
                 'db_table': 'promotions',
@@ -142,7 +142,7 @@ class Migration(migrations.Migration):
                 ('delivered_address', models.CharField(max_length=200)),
                 ('stored_by', models.CharField(max_length=100)),
                 ('delivered', models.BooleanField()),
-                ('customer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='negocios_publicidad.Customer')),
+                ('customer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='publicidad.Customer')),
             ],
             options={
                 'db_table': 'requests',
@@ -155,8 +155,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('cantidad_producto', models.IntegerField()),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='negocios_publicidad.Product')),
-                ('request', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='negocios_publicidad.Request')),
+                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='publicidad.Product')),
+                ('request', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='publicidad.Request')),
             ],
             options={
                 'db_table': 'request_details',
@@ -171,8 +171,8 @@ class Migration(migrations.Migration):
                 ('date', models.DateTimeField()),
                 ('customer_quantity', models.IntegerField()),
                 ('expired', models.BooleanField()),
-                ('customer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='negocios_publicidad.Customer')),
-                ('negocio', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='negocios_publicidad.Negocio')),
+                ('customer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='publicidad.Customer')),
+                ('negocio', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='publicidad.Negocio')),
             ],
             options={
                 'db_table': 'reservations',
@@ -198,26 +198,26 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='request',
             name='details',
-            field=models.ManyToManyField(through='negocios_publicidad.request_details', to='negocios_publicidad.Product'),
+            field=models.ManyToManyField(through='publicidad.request_details', to='publicidad.Product'),
         ),
         migrations.AddField(
             model_name='request',
             name='negocio',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='negocios_publicidad.Negocio'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='publicidad.Negocio'),
         ),
         migrations.AddField(
             model_name='negocio',
             name='suscription',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='negocios_publicidad.Suscription'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='publicidad.Suscription'),
         ),
         migrations.AddField(
             model_name='mesa',
             name='negocio',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='negocios_publicidad.Negocio'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='publicidad.Negocio'),
         ),
         migrations.AddField(
             model_name='administrator',
             name='negocio',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='negocios_publicidad.Negocio'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='publicidad.Negocio'),
         ),
     ]
