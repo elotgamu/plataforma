@@ -1,7 +1,6 @@
 {% extends "layouts/default.html" %}
-{% load bootstrap3 %}
 {% block title %}Principal{% endblock %}
-{% block content %}
+{% block body_block %}
     {% if messages %}
         <ul class="messages">
             {% for message in messages %}
@@ -16,5 +15,6 @@
         <li><a href="{% url 'newnegocio' %}">Agregar nuevo negocio</a></li>
         <li><a href="{% url 'lista-negocios' %}">Lista de negocios inscritos</a></li>
         <li><a href="{% url 'newcustomer' %}">Agregar nuevo cliente</a></li>
+        <li><a href="{% url 'login' %}">Iniciar sesion</a></li>
     </ul>
 {% endblock %}

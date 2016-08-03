@@ -1,10 +1,35 @@
 {% extends "layouts/default.html" %}
 {% block title %}Inicio de sesión{% endblock title %}
 {% block body_block %}
-    {% if form.errors %}
-        <p>Tu nombre de usuario y contraseña no coinciden. Porfavor inetente nuevamente</p>
-        <form method="POST">
+    <br>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="page-header">
+                <h2>Inicie sesion</h2>
+            </div>
+            {% if message %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+            {% endif %}
 
-        </form>
-    {% endif %}
-{% endblock body_block %}
+            <form method="POST" action="/login/">
+                {% csrf_token %}
+                <div class="login-form">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        {{ form.username }}
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        {{ form.password }}
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <input type="submit" name="login" class="btn btn-default boton"
+                    value="Iniciar sesion">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

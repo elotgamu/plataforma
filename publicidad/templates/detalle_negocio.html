@@ -1,13 +1,14 @@
 {% extends "layouts/default.html" %}
-{% load bootstrap3 %}
 {% block title %}Detalles del Negocio{% endblock title %}
-{% block content %}
+{% block body_block %}
     <br>
     <h3>{{ negocio.name }}</h4>
     <h4>Descripcion</h4>
     <p>{{ negocio.description }}</p>
     <h4>Ubicado en: </h4>
     <p>{{ negocio.location }}</p>
+    <h4>Propietario: </h4>
+    <p>{{ negocio.owner }}</p>
     <h4>Contacto</h4>
     <p>Email: {{ negocio.email }}</p>
     <p>Telefono: {{ negocio.phone }}</p>

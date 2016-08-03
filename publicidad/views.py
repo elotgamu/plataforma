@@ -6,21 +6,39 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.template.loader import render_to_string
-from .models import Negocio, Administrator, Customer
-from .forms import negocio_form, admin_form, customer_form
+from .models import Negocio, Administrator, Customer, Suscription
+from .forms import negocio_form, admin_form, customer_form, login_form
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponseRedirect, HttpResponse
 from django.views.generic import TemplateView, ListView, DetailView
+
+from django.contrib.auth import authenticate, login
+# from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 
 class Home(TemplateView):
+    """ The home page """
     template_name = "home.html"
 
     def get_context_data(self, **kwargs):
         context = super(Home, self).get_context_data(**kwargs)
         return context
+
+
+class Negocios(ListView):
+    """ shows the list of negocios in the app """
+    model = Negocio
+    template_name = "lista_negocios.html"
+    context_object_name = 'negocios'
+
+
+class NegoDetails(DetailView):
+    """ shows the negocio details, tunning needed!"""
+    model = Negocio
+    template_name = "detalle_negocio.html"
+    context_object_name = 'negocio'
 
 
 def add_negocio(request):
@@ -30,11 +48,14 @@ def add_negocio(request):
         form_admin = admin_form(request.POST, prefix='admin_form')
 
         if form_negocio.is_valid() and form_admin.is_valid():
-            """save the negocio id as fk in admin"""
-            new_negocio = form_negocio.save()
-            new_admin = form_admin.save(commit=False)
-            new_admin.negocio = new_negocio
-            new_admin.save()
+            """save the admin id as fk in negocio and its default
+            suscription"""
+            new_admin = form_admin.save()
+            new_negocio = form_negocio.save(commit=False)
+            suscription = Suscription.objects.get(name='Free - Prueba')
+            new_negocio.suscription = suscription
+            new_negocio.owner = new_admin
+            new_negocio.save()
 
             """ now to generate the activation key
             and send email confirmation link"""
@@ -89,6 +110,40 @@ def add_customer(request):
 
     return render(request, 'add_customer.html',
                   {'customer': form_customer})
+
+
+def login_view(request):
+
+    if request.user.is_authenticated():
+        # if already login i sould redirec to the undone panel
+        pass
+
+    if request.method == "POST":
+        form_login = login_form(request.POST)
+
+        if form_login.is_valid:
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(username=username, password=password)
+
+            if user is not None and user.is_active:
+                login(request, user)
+                # here i should redirect to my undone panel
+                messages.add_message(request,
+                                     messages.SUCCESS,
+                                     'Ha iniciado sesion correctamente')
+                return HttpResponseRedirect(reverse('home'))
+
+            else:
+                pass
+
+            pass
+
+    else:
+        form_login = login_form()
+
+    return render(request, 'authenticate/login.html',
+                  {'form': form_login})
 
 
 def set_activation_key(user_name, email):
@@ -181,16 +236,3 @@ def account_confirm(request, key):
 
 def expired_key(request):
     render(request, 'emails/resend_activation_key_request.html')
-
-
-class Negocios(ListView):
-    """ shows the list of negocios in the app """
-    model = Negocio
-    template_name = "lista_negocios.html"
-    context_object_name = 'negocios'
-
-
-class NegoDetails(DetailView):
-    model = Negocio
-    template_name = "detalle_negocio.html"
-    context_object_name = 'negocio'

@@ -30,11 +30,34 @@ class Suscription(models.Model):
         return self.name
 
 
+# model for manager of negocios extends django users table
+class Administrator(User):
+    gender_options = (
+        ('M', 'Masculino'),
+        ('F', 'Femenino'),
+    )
+    gender = models.CharField(max_length=50, choices=gender_options)
+    avatar = models.ImageField(upload_to='profiles/',
+                               blank=True,
+                               null=True,
+                               default="static/images/default.jpg")
+    activation_key = models.CharField(max_length=50, blank=True, null=True)
+    key_expires = models.DateTimeField(default=set_key_expiration)
+
+    class Meta:
+        verbose_name = "administrador"
+        verbose_name_plural = "administradores"
+        db_table = 'administrators'
+
+    def __str__(self):
+        return "%s %s" % (self.first_name, self.last_name)
+
+
 class Negocio(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField()
     location = models.CharField(max_length=200)
-    owner = models.CharField(max_length=200)
+    owner = models.OneToOneField('Administrator', on_delete=models.CASCADE)
     email = models.EmailField()
     phone = models.CharField(max_length=8)
     menu_path = models.FilePathField()
@@ -50,30 +73,6 @@ class Negocio(models.Model):
 
     def __str__(self):
         return self.name
-
-
-# model for manager of negocios extends django users table
-class Administrator(User):
-    gender_options = (
-        ('M', 'Masculino'),
-        ('F', 'Femenino'),
-    )
-    gender = models.CharField(max_length=50, choices=gender_options)
-    avatar = models.ImageField(upload_to='profiles/',
-                               blank=True,
-                               null=True,
-                               default="static/images/default.jpg")
-    activation_key = models.CharField(max_length=50, blank=True, null=True)
-    key_expires = models.DateTimeField(default=set_key_expiration)
-    negocio = models.ForeignKey('Negocio', on_delete=models.CASCADE)
-
-    class Meta:
-        verbose_name = "administrador"
-        verbose_name_plural = "administradores"
-        db_table = 'administrators'
-
-    def __str__(self):
-        return "%s %s" % (self.first_name, self.last_name)
 
 
 # model for customer extends django users table

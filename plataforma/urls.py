@@ -29,5 +29,6 @@ urlpatterns = [
     url(r'^detalles_negocio/(?P<pk>[0-9]+)/$', views.NegoDetails.as_view(),
         name='detalle-negocio'),
     url(r'^agregar_cliente/', views.add_customer, name='newcustomer'),
+    url(r'^login/', views.login_view, name='login'),
     url(r'^admin/', admin.site.urls),
 ]

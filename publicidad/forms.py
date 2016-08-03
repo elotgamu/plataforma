@@ -1,6 +1,7 @@
+from django import forms
 from django.forms import ModelForm
-from .models import Administrator, Customer, Negocio, Suscription
-from django.contrib.auth.forms import UserCreationForm
+from .models import Administrator, Customer, Negocio
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 
 class negocio_form(ModelForm):
@@ -11,14 +12,14 @@ class negocio_form(ModelForm):
                   'location',
                   'email',
                   'phone')
-        exclude = ['suscription']
+        exclude = ['suscription', 'owner']
 
-    def save(self, commit=False):
+    """def save(self, commit=False):
         negocio = super(negocio_form, self).save(commit=False)
         suscription_defaults = Suscription.objects.get(name='Free - Prueba')
         negocio.suscription = suscription_defaults
         negocio.save()
-        return negocio
+        return negocio"""
 
 
 class admin_form(UserCreationForm):
@@ -33,7 +34,6 @@ class admin_form(UserCreationForm):
             "username",
             "email"
         ]
-        exclude = ['negocio']
 
     def save(self, commit=True):
         admin = super(admin_form, self).save(commit=False)
@@ -64,3 +64,18 @@ class customer_form(UserCreationForm):
         if commit:
             customer.save()
         return customer
+
+
+class login_form(AuthenticationForm):
+    """docstring for login_form"""
+    username = forms.CharField(max_length=30,
+                               widget=forms.TextInput(attrs={
+                                                      'class': 'form-control',
+                                                      'name': 'username'
+                                                      }))
+
+    password = forms.CharField(max_length=30,
+                               widget=forms.PasswordInput(attrs={
+                                                    'class': 'form-control',
+                                                    'name': 'password'
+                                                                }))
