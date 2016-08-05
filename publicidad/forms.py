@@ -2,6 +2,7 @@ from django import forms
 from django.forms import ModelForm
 from .models import Administrator, Customer, Negocio
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import authenticate
 
 
 class negocio_form(ModelForm):
@@ -66,7 +67,7 @@ class customer_form(UserCreationForm):
         return customer
 
 
-class login_form(AuthenticationForm):
+class auth_form(AuthenticationForm):
     """docstring for login_form"""
     username = forms.CharField(max_length=30,
                                widget=forms.TextInput(attrs={
@@ -79,3 +80,37 @@ class login_form(AuthenticationForm):
                                                     'class': 'form-control',
                                                     'name': 'password'
                                                                 }))
+
+    this_login = forms.BooleanField(widget=forms.HiddenInput,
+                                    initial=1,
+                                    error_messages={
+                                        'required': 'Su sesion ha expirado'
+                                    })
+
+    def clean(self):
+        username = self.cleaned_data.get('username')
+        password = self.cleaned_data.get('password')
+        message = forms.ERROR_MESSAGE
+
+        if username and password:
+            self.user_cache = authenticate(username=username,
+                                           password=password)
+            if u'@' in username:
+                # Mistakenly entered e-mail address instead of username?
+                # Look it up.
+                try:
+                    user = Administrator.objects.get(email=username)
+                except (Administrator.DoesNotExist,
+                        Administrator.MultipleObjectsReturned):
+                    # Nothing to do here, moving along.
+                    pass
+                else:
+                    if user.check_password(password):
+                        message = ("Your e-mail address is not your "
+                                   "username."
+                                   " Try '%s' instead.") % user.username
+                raise forms.ValidationError(message)
+            # Removed check for is_staff here!
+            elif not self.user_cache.is_active:
+                raise forms.ValidationError(message)
+        return self.cleaned_data

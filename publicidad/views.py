@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.template.loader import render_to_string
 from .models import Negocio, Administrator, Customer, Suscription
-from .forms import negocio_form, admin_form, customer_form, login_form
+from .forms import negocio_form, admin_form, customer_form, auth_form
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponseRedirect, HttpResponse
 from django.views.generic import TemplateView, ListView, DetailView
@@ -119,7 +119,7 @@ def login_view(request):
         pass
 
     if request.method == "POST":
-        form_login = login_form(request.POST)
+        form_login = auth_form(request.POST)
 
         if form_login.is_valid:
             username = request.POST['username']
@@ -129,10 +129,10 @@ def login_view(request):
             if user is not None and user.is_active:
                 login(request, user)
                 # here i should redirect to my undone panel
-                messages.add_message(request,
+                """"messages.add_message(request,
                                      messages.SUCCESS,
                                      'Ha iniciado sesion correctamente')
-                return HttpResponseRedirect(reverse('home'))
+                return HttpResponseRedirect(reverse('home'))"""
 
             else:
                 pass
@@ -140,9 +140,9 @@ def login_view(request):
             pass
 
     else:
-        form_login = login_form()
+        form_login = auth_form()
 
-    return render(request, 'authenticate/login.html',
+    return render(request, 'auth/login.html',
                   {'form': form_login})
 
 
@@ -221,6 +221,7 @@ def account_confirm(request, key):
         else:
             user_type.activation_key = ""
             user_type.is_active = True
+            user_type.is_staff = True
             user_type.save()
             msm_type = messages.SUCCESS
             msm_message = "Se activado su cuenta, ahora inicie sesion"
