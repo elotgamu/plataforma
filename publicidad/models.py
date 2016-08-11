@@ -1,9 +1,9 @@
 import datetime
 from django.db import models
 from django.utils import timezone
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.core.urlresolvers import reverse
-
+from django.db.models.signals import post_save
 # Create your models here.
 
 
@@ -30,6 +30,17 @@ class Suscription(models.Model):
         return self.name
 
 
+def add_me_to_admin_group(sender, instance, created, **kwargs):
+    if created is False:
+        if instance.groups.filter(name='Administrator').exists():
+            print('This admin already exists in administrator group')
+        else:
+            admin_group = Group.objects.get(name='Administrator')
+            admin_group.user_set.add(instance)
+            admin_group.save()
+            print('The admin has joined the admin group')
+
+
 # model for manager of negocios extends django users table
 class Administrator(User):
     gender_options = (
@@ -52,6 +63,14 @@ class Administrator(User):
     def __str__(self):
         return "%s %s" % (self.first_name, self.last_name)
 
+# signal for add an admin to the admin group
+post_save.connect(add_me_to_admin_group, sender=Administrator)
+
+
+def menu_upload_to(instance, filename):
+    '''the menu upload path'''
+    return 'user_{0}/{1}'.format(instance.owner.id, filename)
+
 
 class Negocio(models.Model):
     name = models.CharField(max_length=200)
@@ -60,7 +79,8 @@ class Negocio(models.Model):
     owner = models.OneToOneField('Administrator', on_delete=models.CASCADE)
     email = models.EmailField()
     phone = models.CharField(max_length=8)
-    menu_path = models.FilePathField()
+    menu_path = models.FileField(upload_to=menu_upload_to, blank=True,
+                                 null=True)
     suscription = models.ForeignKey('Suscription', on_delete=models.CASCADE)
 
     class Meta:
@@ -117,6 +137,9 @@ class Mesa(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField()
+    negocio = models.ForeignKey('Negocio', on_delete=models.CASCADE,
+                                blank=True,
+                                null=True)
 
     class Meta:
         verbose_name = "Category"
@@ -179,7 +202,7 @@ class request_details(models.Model):
 class Promotion(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField()
-    flyer = models.ImageField()
+    flyer = models.ImageField(upload_to='promotions/%Y_%m_%d/')
     is_active = models.BooleanField()
     valid_since = models.DateTimeField()
     expires = models.DateTimeField()
