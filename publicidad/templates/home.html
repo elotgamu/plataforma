@@ -1,6 +1,137 @@
 {% extends "layouts/default.html" %}
+{% load staticfiles%}
 {% block title %}Principal{% endblock %}
 {% block body_block %}
+<section class="featured">
+    <div class="container">
+        <div class="row mar-bot40">
+            <div class="col-md-6 col-md-offset-3">
+
+                <div class="align-center">
+                    <h2 class="slogan">Explora, reserva, come caliente y con buen gusto</h2>
+                    <p>Una vez planeado donde ir, es bueno saber donde degustar un buen platillo
+                    seguido de una buena atención y conservando nuestras tradiciones
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="section pad-bot30 bg-white">
+    <div class="container">
+        <div class="row mar-bot40">
+
+            <!-- conecta -->
+            <div class="col-lg-4">
+                <div class="align-center">
+                    <img class="img-circle" src="{% static "images/ConectaImage.png" %}" width="140" height="140">
+                    <h2>Conecta</h2>
+                    <p>
+                        Vive de la experiencia de tener tu negocio en linea, rompe las brechas entre tu
+                        negocio y clientes cercanos para de llegar a potenciales nuevos clientes de
+                        diferentes zonas de Nicaragua.
+                     </p>
+                </div>
+            </div>
+
+            <!-- oferta -->
+            <div class="col-lg-4">
+                <div class="align-center">
+                   <img class="img-circle" src="{% static "images/OfertaImage.png" %}" width="140" height="140">
+                   <h2>Oferta</h2>
+                   <p>
+                       Sube videos ,imagenes y dales la mejor cara a tus productos !. Gracias a nuestra plataforma de publicidad digital te encargas de tus productos y nosotros de llevar tu negocio a otro nivel.
+                   </p>
+                </div>
+            </div>
+
+            <!-- diferenciate -->
+            <div class="col-lg-4">
+                <div class="align-center">
+                    <img class="img-circle" src="{% static "images/DiferenciateImage.png" %}" width="140" height="140">
+                    <h2>Diferenciate</h2>
+                    <p>
+                        El marketing digital es lo que impulsa el exito de los negocios y nosotros sabemos que tu principal objetivo es crecer, y estamos comprometidos para hacerlo realidad.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="hotlinks" class="hotlinks" data-stellar-background-ratio="0.5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 align-center">
+
+                    <div class="hotlinks-items pad-top40 pad-bot40 clearfix">
+                        <button type="button" class="btn btn-default btn-lg">
+                            <a href="{% url 'newnegocio' %}">Registra tu negocio</a>
+                        </button>
+                    </div>
+
+                    <div class="hotlinks-items pad-top40 pad-bot40 clearfix">
+                        <button type="button" class="btn btn-default btn-lg">
+                            <a href="{% url 'newcustomer' %}">Unete a la plataforma</a>
+                        </button>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact-us" class="section appear clearfix">
+    <div class="container">
+
+        <div class="row mar-bot40">
+            <div class="col-md-offset-3 col-md-6">
+                <div class="section-header">
+                    <h2 class="section-heading animated">¿Dudas? Escribenos</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="cform" id="contact-form">
+                    <form action="" method="post" role="form" class="contactForm">
+
+                        <div class="form-group">
+                            <label for="name">Tu nombre: </label>
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Tu nombre" data-rule="maxlen:4" data-msg="Please enter at least 4 chars">
+                            <div class="validation"></div>
+                        </div>
+
+                         <div class="form-group">
+                            <label for="email">Tu email: </label>
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Tu correo" data-rule="email" data-msg="Please enter a valid email" />
+                            <div class="validation"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Asunto: </label>
+                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Asunto" data-rule="maxlen:4" data-msg="Please enter at least 8 chars of subject" />
+                            <div class="validation"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Mensaje: </label>
+                            <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us"></textarea>
+                            <div class="validation"></div>
+                        </div>
+
+                        <button type="submit" class="btn btn-theme pull-left">Enviar mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
     {% if messages %}
         <ul class="messages">
             {% for message in messages %}
@@ -10,11 +141,11 @@
             {% endfor %}
         </ul>
     {% endif %}
-    <h3>Opciones principales: </h3>
+    <!-- <h3>Opciones principales: </h3>
     <ul>
         <li><a href="{% url 'newnegocio' %}">Agregar nuevo negocio</a></li>
         <li><a href="{% url 'lista-negocios' %}">Lista de negocios inscritos</a></li>
         <li><a href="{% url 'newcustomer' %}">Agregar nuevo cliente</a></li>
         <li><a href="{% url 'admin:index' %}">Iniciar sesion</a></li>
-    </ul>
+    </ul> -->
 {% endblock %}
