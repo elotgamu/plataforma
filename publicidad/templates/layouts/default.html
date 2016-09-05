@@ -11,35 +11,38 @@
 
     <!-- stylesheets -->
     <!-- boostraps base css -->
-    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}">
-    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap-theme.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap-theme.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}">
+
+    <!-- fonts-->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:400,300">
     <!-- custom css  thanks to amoeba template-->
-    <link rel="stylesheet" type="text/css" href="{% static "css/isotope.css" %}" media="screen">
+    <!--<link rel="stylesheet" type="text/css" href="{% static "css/isotope.css" %}" media="screen">
     <link rel="stylesheet" type="text/css" href="{% static "js/fancybox/jquery.fancybox.css" %}" media="screen">
     <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
-    <link rel="stylesheet" type="text/css" href="{% static "skin/default.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "skin/default.css" %}"> -->
 </head>
 <body>
     <!-- default nav bar -->
-    <section id="header" class="appear"></section>
-
-    <div class="navbar navbar-fixed-top" role="navigation" data-0="line-height:100px; height:100px; background-color:rgba(0,0,0,0.3);" data-300="line-height:60px; height:60px; background-color:rgba(0,0,0,1);">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="fa fa-bars color-white"></span>
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navlinks">
+                    <span class="sr-only">Toggle-navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
-                <h1>
-                    <a class="navbar-brand" href="{% url 'home' %}" data-0="line-height:90px;" data-300="line-height:50px;">GastroNica</a>
-                </h1>
+                <a class="navbar-brand page-scroll" href="{% url 'home' %}">Gastronica</a>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:5px;">
-                    <li class="active">
-                        <a href="{% url 'home' %}">Inicio</a>
-                    </li>
-                    <li><a href="">Acerca de</a></li>
-                    <li><a href="">Contacto</a></li>
+
+            <div class="collapse navbar-collapse" id="navlinks">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{% url 'lista-negocios' %}">Catalogo de negocios</a></li>
+                    <li><a href="#">Acerca de</a></li>
+                    <li><a href="#">Contacto</a></li>
                     {% if user.is_authenticated %}
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown">
@@ -49,7 +52,7 @@
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li>
-                                    <a href="{% url 'admin:index' %}">Mi contenido</a>
+                                    <a href="/mi_contenido">Mi contenido</a>
                                 </li>
                                 <li>
                                     <a href="{% url 'logout' %}">Cerrar sesion</a>
@@ -57,12 +60,14 @@
                             </ul>
                         </li>
                     {% else %}
-                        <li><a href="/admin/login">Iniciar sesion</a></li>
+                        <li><a href="{% url 'login' %}">Iniciar sesion</a></li>
                     {% endif %}
                 </ul>
             </div>
+
         </div>
-    </div> <!-- end default nav bar -->
+    </nav>
+    <!-- end default nav bar -->
 
     <!-- body content -->
     {% block body_block %}
@@ -71,14 +76,23 @@
     <section id="footer" class="section footer">
         <div class="container">
 
-            <div class="row animated opacity mar-bot20" data-andown="fadeIn" data-animation="animation">
-                <div class="col-sm-12 align-center">
+            <div class="row align-center mar-bot20 row_hg50">
+                <div class="col-sm-12 align-center row_hg50">
                     <ul class="social-network social-circle">
-                        <li><a href="#" class="icoRss" title="Rss"><i class="fa fa-rss"></i></a></li>
-                        <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#" class="icoFacebook" title="Facebook">
+                            <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li><a href="#" class="icoTwitter" title="Twitter">
+                            <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li><a href="#" class="icoGoogle" title="Google +">
+                            <i class="fa fa-google-plus"></i></a>
+                        </li>
+                        <li><a href="#" class="icoLinkedin" title="Linkedin">
+                            <i class="fa fa-linkedin"></i></a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -94,9 +108,10 @@
         </div>
     </section>
     <!-- jquery and boostrap's js -->
-    <script type="text/javascript" src="{% static "js/jquery.js" %}"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery.js"></script>
     <script type="text/javascript" src="{% static "js/bootstrap.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "js/modernizr-2.6.2-respond-1.1.0.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/main.js" %}"></script>
+    <!--<script type="text/javascript" src="{% static "js/modernizr-2.6.2-respond-1.1.0.min.js" %}"></script>
     <script type="text/javascript" src="{% static "js/jquery.easing.1.3.js" %}"></script>
     <script type="text/javascript" src="{% static "js/jquery.isotope.min.js" %}"></script>
     <script type="text/javascript" src="{% static "js/jquery.nicescroll.min.js" %}"></script>
@@ -107,6 +122,6 @@
     <script type="text/javascript" src="{% static "js/stellar.js" %}"></script>
     <script type="text/javascript" src="{% static "js/jquery.appear.js" %}"></script>
     <script type="text/javascript" src="{% static "js/validate.js" %}"></script>
-    <script type="text/javascript" src="{% static "js/main.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/main.js" %}"></script> -->
 </body>
 </html>

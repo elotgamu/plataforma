@@ -7,12 +7,12 @@ from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.template.loader import render_to_string
 from .models import Negocio, Administrator, Customer, Suscription
-from .forms import negocio_form, admin_form, customer_form, auth_form
+from .forms import negocio_form, admin_form, customer_form
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponseRedirect, HttpResponse
 from django.views.generic import TemplateView, ListView, DetailView
-
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import AuthenticationForm
 # from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -119,9 +119,9 @@ def login_view(request):
         pass
 
     if request.method == "POST":
-        form_login = auth_form(request.POST)
+        login_form = AuthenticationForm(request.POST)
 
-        if form_login.is_valid:
+        if login_form.is_valid:
             username = request.POST['username']
             password = request.POST['password']
             user = authenticate(username=username, password=password)
@@ -129,21 +129,17 @@ def login_view(request):
             if user is not None and user.is_active:
                 login(request, user)
                 # here i should redirect to my undone panel
-                """"messages.add_message(request,
-                                     messages.SUCCESS,
-                                     'Ha iniciado sesion correctamente')
-                return HttpResponseRedirect(reverse('home'))"""
 
-            else:
-                pass
-
-            pass
+                if Administrator.objects.filter(username=user).exists():
+                    return HttpResponseRedirect('/mi_contenido/')
+                else:
+                    return HttpResponseRedirect(reverse('home'))
 
     else:
-        form_login = auth_form()
+        login_form = AuthenticationForm(request)
 
     return render(request, 'auth/login.html',
-                  {'form': form_login})
+                  {'form': login_form})
 
 
 def set_activation_key(user_name, email):

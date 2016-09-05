@@ -1,0 +1,522 @@
+/* === fontawesome === */
+@import url('font-awesome.css');
+
+body{
+	font-family: 'Lato' , sans-serif;
+  /*background-color: #385B35;*/
+}
+
+.banner-container{
+	  background: url('../images/Tipicos.jpg');
+		background-attachment:scroll;
+    background-position:center;
+		-webkit-background-size:cover;
+    -moz-background-size:cover;
+		background-size:cover;
+    -o-background-size:cover;
+    text-align:center;
+    color:#fff;
+		background-size: cover;
+    height: 750px;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: ce3a00;
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+
+.boton{
+        font-size:16px;
+        font-family:'Segoe UI';
+        font-weight:normal;
+        color:white;
+        background:#156594;
+        border:0px;
+        width:auto;
+        height:auto;
+        margin-bottom: 20px;
+  }
+
+
+.titulos
+{
+	display: block;
+	color: white;
+	margin-left: 10px;margin-bottom: 10px;
+	font-size: 24px;
+	text-align: left;
+  font-family: 'Segoe UI';
+	font-weight: normal;
+}
+
+.contenedor_info_landing
+{
+	position: relative;
+	margin: 0 auto;
+	padding: 10px;
+	background-color: #385B35;
+	opacity: 0.8;
+	filter: alpha(opacity=50);
+	width: auto;
+	height: auto;
+}
+
+.contenedor_registro
+{
+    position: relative;
+    border-radius: 8px;
+    left: 50%;
+    margin: 0 auto;
+		padding: 10px;
+    background-color: #9A3E0C;
+    top: 30%;
+    width: auto;
+    height: auto;
+    border: 2px solid #87ACD0;
+    /*transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);*/
+}
+
+.label{
+	display: block;
+	color: #4F4646;
+	font-size: 18px;
+	text-align: left;
+  font-family: 'Segoe UI';
+	font-weight: normal;
+}
+
+img{
+	max-width: 100%;
+}
+
+.quitar{
+	float: none;
+}
+.espacio{
+	margin-top: 70px;
+}
+.espacio2{
+	margin-top: 20px;
+}
+.espacio3{
+	margin-top: 110px;
+}
+.pacifico{
+	font-family: 'Pacifico', cursive;
+}
+.grande{
+	font-size: 4em;
+}
+.verde{
+	color:#00887C;
+}
+.espacio-derecha{
+	margin-right: 1em;
+}
+a,.azul{
+	color: #009FFF;
+}
+.no-lista li{
+list-style-type: none;
+}
+.no-lista{
+	margin: 0px;
+	padding: 0px;
+}
+.se-gris{
+	background-color: #eee;
+}
+.se-dav{
+  background-color:  #66B9F2;
+}
+.padding-largo{
+	padding: 5px 10px;
+}
+.inline-block{
+	float: none;
+	display: inline-block;
+	margin-right: -4px;
+}
+.vete-arriba{
+	vertical-align: top;
+}
+.mediano{
+	font-size: 1.2em;
+}
+.pausa-1{
+	-webkit-animation-delay: 1s;
+	-moz-animation-delay: 1s;
+	animation-delay: 1s;
+}
+.pausa-2{
+	-webkit-animation-delay: 2s;
+	-moz-animation-delay: 2s;
+	animation-delay: 2s;
+}
+.blanco{
+	color: #fff;
+}
+.sombra{
+	text-shadow: rgba(0, 0, 0, 0.8) 1px 1px 5px;
+}
+.separador{
+	  width: 420px;
+    height: 1px;
+    background: #a6aab9;
+    margin: 0 auto;
+}
+.separador2{
+    width: 5px;
+    height: 700px;
+    background: #a6aab9;
+    margin: 0 auto;
+}
+.lp7 .sub-container {
+    max-width: 680px;
+    margin: 0 auto;
+}
+.lp7 .main-title {
+    font-size: 48px;
+    font-family: 'aleolight',Helvetica Neue,Arial,Helvetica,sans-serif;
+    color: white;
+    margin-bottom: 36px;
+}
+.lp7 .sub-title {
+    width: 500px;
+    margin: 0 auto 50px;
+    font-size: 20px;
+    color: white;
+    line-height: 34px;
+    font-family: 'lato',Helvetica Neue,Arial,Helvetica,sans-serif;
+}
+.account-prompt {
+    font-size: 24px;
+    font-family: 'aleoregular',Helvetica Neue,Arial,Helvetica,sans-serif;
+    color: white;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+button{
+    font-size: 13px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: #383d48;
+    margin: 0;
+    padding: 0;
+    line-height: 20px;
+}
+.marco{
+	border: 4px solid #00887C;
+	border-radius: 2px;
+}
+.mas{
+	height: 40px;
+    margin-left: -170px;
+    position: absolute;
+}
+.margen{
+	margin-bottom: 50px;
+}
+.tamano{
+	width: 16%;
+}
+.menu-checkbox {
+  display: none;
+}
+
+.overlay {
+  background-color: #000;
+  opacity: 0.5;
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 30px;
+  left: 0;
+  z-index: 100;
+}
+
+/*.menu {
+  position: fixed;
+  top: 30px;
+  left: 0;
+  z-index: 101;
+  visibility: hidden;
+  width: 240px;
+  height: 100%;
+  background: #434343;
+  color: white;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  -webkit-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+  padding: 10px;
+}*/
+
+/*.menu-btn {
+  margin-top: -69px;
+  z-index: 11222;
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 31px;
+  font-weight: 300;
+  line-height: 1em;
+  position: fixed;
+  padding: 0;
+  left: 10px;
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}*/
+
+.content {
+  margin-top: 60px;
+}
+
+.items {
+  width: 100%;
+  margin: 0;
+  padding: 10px;
+  list-style:none;
+}
+
+.menu-checkbox:checked ~ .overlay {
+  display: block;
+}
+.menu-checkbox:checked ~ .menu {
+  visibility: visible;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.menu-checkbox:checked ~ .header .three-lines {
+  position: relative;
+  left: -3px;
+}
+
+.s-scroll
+{
+    max-height:500px;
+    overflow-y:auto;
+}
+
+.li-custom li a {
+    background-color:#E4E2E0;
+    color:#FFFDFB;
+}
+
+.li-custom li a:hover {
+    background-color:#612B02;
+    color:#FFFDFB;
+}
+
+.index
+{
+  background-color:#FFFFFF;
+}
+
+.thumbnail {
+  display: block;
+  padding: 4px;
+  margin-bottom: 2px;
+  line-height: 1.42857143;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 0px;
+  -webkit-transition: border .2s ease-in-out;
+  -o-transition: border .2s ease-in-out;
+  transition: border .2s ease-in-out;
+}
+
+.thumbnail:hover
+{
+	  background-color: #131B44;
+		color: #FAFBFC;
+}
+
+.thumbnail .caption:hover
+{
+	color: #FAFBFC;
+}
+
+.thumbnail > img,
+.thumbnail a > img {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+a.thumbnail:hover,
+a.thumbnail:focus,
+a.thumbnail.active {
+  border-color: #337ab7;
+}
+
+.thumbnail .caption {
+  padding: 9px;
+  color: #333;
+}
+
+/*some stuffs added for home landing */
+body {
+  font-size: 16px;
+  line-height: 1.6em;
+  font-weight: 300;
+  text-shadow: none;
+}
+
+.mar-bot20 {
+  margin-bottom: 20px;
+}
+
+.row_hg50 {
+  height: 50px;
+}
+
+.align-center {
+  text-align: center;
+}
+
+
+section {
+  margin: 0;
+  padding: 80px 0 60px 0;
+}
+
+section.featured {
+  padding: 200px 0 60px;
+  height: 750px;
+  background: url('../images/Tipicos.jpg') no-repeat center;
+  background-attachment: fixed;
+}
+
+section.featured h2.slogan {
+  color: #fff;
+  font-size: 48px;
+  font-weight: 900;
+}
+
+section.about {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+section.hotlinks {
+  height: 300px;
+  padding-bottom: 40px;
+  position: relative;
+  background: url('../images/pics_on_plates.jpg') no-repeat center center;
+  text-align: center;
+  color: #fff;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+section.hotlinks .container {
+  padding-top: 10px;
+  padding-bottom: 40px;
+}
+
+.hotlinks-items {
+  display: block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  position: relative;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+/* set some stuffs for footer */
+
+section#footer {
+  background: #242424;
+  margin: 0;
+}
+
+
+ul.social-network {
+  list-style: none;
+  display: inline;
+  margin-left: 0 !important;
+  padding: 0;
+
+}
+
+ul.social-network li {
+  display: inline;
+  margin: 0 5px;
+}
+
+/*for changing the color on social links on mouse hover*/
+.social-network a.icoFacebook:hover {
+  background-color: #3B5998;;
+}
+.social-network a.icoTwitter:hover {
+  background-color: #1DA1F2;
+}
+.social-network a.icoGoogle:hover {
+  background-color: #BD3518;
+}
+.social-network a.icoLinkedin:hover {
+  background-color: #007bb7;
+}
+.social-network a.icoFacebook:hover i, .social-network a.icoTwitter:hover i,
+.social-network a.icoGoogle:hover i, .social-network a.icoLinkedin:hover i {
+  color:#fff;
+}
+a.socialIcon:hover, .socialHoverClass {
+  color:#44BCDD;
+}
+
+.social-circle li a {
+  background: #35A49C;
+  display:inline-block;
+  position:relative;
+  margin:0 auto 0 auto;
+  -moz-border-radius:50%;
+  -webkit-border-radius:50%;
+  border-radius:50%;
+  text-align:center;
+  width: 50px;
+  height: 50px;
+  font-size:20px;
+}
+
+.social-circle li i {
+   margin: 0;
+   line-height: 50px;
+   text-align: center;
+}
+
+/* rotating the icons on mouse hover
+  thanks to amoeba template for the example */
+.social-circle li a:hover i, .triggeredHover {
+  -moz-transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+  -ms--transform: rotate(360deg);
+  transform: rotate(360deg);
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.social-circle i {
+  color: #fff;
+  -webkit-transition: all 0.8s;
+  -moz-transition: all 0.8s;
+  -o-transition: all 0.8s;
+  -ms-transition: all 0.8s;
+  transition: all 0.8s;
+}

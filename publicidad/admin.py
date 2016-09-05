@@ -1,6 +1,17 @@
 from django.contrib import admin
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext as _
+# from django.views.decorators.cache import never_cache
 from .models import Suscription, Negocio, Promotion, Category, Product
+
+
+class SiteManager(admin.AdminSite):
+    """My custom admin site for Administrator"""
+    site_header = _('GastroNica, Manage your stuffs')
+    site_title = _('Gastronica Management')
+    index_title = _('Gastronica')
+    login_template = 'auth/login.html'
+
+mi_contenido = SiteManager('Administrator Site')
 
 
 class NegocioAdmin(admin.ModelAdmin):
@@ -13,7 +24,8 @@ class NegocioAdmin(admin.ModelAdmin):
             return query
         return query.filter(owner=request.user)
 
-admin.site.register(Negocio, NegocioAdmin)
+# admin.site.register(Negocio, NegocioAdmin)
+mi_contenido.register(Negocio, NegocioAdmin)
 
 
 class PromoAdmin(admin.ModelAdmin):
@@ -38,7 +50,8 @@ class PromoAdmin(admin.ModelAdmin):
             obj.negocio = negocio
         obj.save()
 
-admin.site.register(Promotion, PromoAdmin)
+# admin.site.register(Promotion, PromoAdmin)
+mi_contenido.register(Promotion, PromoAdmin)
 
 
 class CategoriesAdmin(admin.ModelAdmin):
@@ -62,7 +75,8 @@ class CategoriesAdmin(admin.ModelAdmin):
             obj.negocio = negocio
         obj.save()
 
-admin.site.register(Category, CategoriesAdmin)
+# admin.site.register(Category, CategoriesAdmin)
+mi_contenido.register(Category, CategoriesAdmin)
 
 
 class category_filter(admin.SimpleListFilter):
@@ -115,9 +129,9 @@ class ProductsAdmin(admin.ModelAdmin):
                 db_field, request, **kwargs
             )
 
-admin.site.register(Product, ProductsAdmin)
-
+# admin.site.register(Product, ProductsAdmin)
+mi_contenido.register(Product, ProductsAdmin)
 
 # Register your models here.
 # superuser can add/edit/delete suscription type items
-admin.site.register(Suscription)
+mi_contenido.register(Suscription)

@@ -2,34 +2,50 @@
 {% block title %}Inicio de sesión{% endblock title %}
 {% block body_block %}
     <br>
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <div class="page-header">
-                <h2>Inicie sesion</h2>
-            </div>
-            {% if message %}
-                <div class="alert alert-danger">
-                    {{ message }}
+    <br>
+    <br>
+    <div class="landing-page-container">
+        <div class="row">
+            <div class="col-md-5 col-md-offset-5">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Iniciar sesion</h3>
                 </div>
-            {% endif %}
+                {% if message %}
+                    <div class="alert alert-danger">
+                        {{ message }}
+                    </div>
+                {% endif %}
 
-            <form method="POST" action="/login/">
-                {% csrf_token %}
-                <div class="login-form">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        {{ form.username }}
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        {{ form.password }}
-                    </div>
+
+                <div class="panel-body">
+                    <form method="POST" action="/login/">
+                        {% csrf_token %}
+                        <div class="login-form">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                {{ form.username }}
+                            </div>
+
+                            <br>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                {{ form.password }}
+                                <input type="hidden" name="next" value="{{ next }}">
+                            </div>
+                            <br>
+                            <div class="btn-group">
+                                <input type="submit" name="login" class="btn btn-default" value="Iniciar sesion">
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="btn-group">
-                    <input type="submit" name="login" class="btn btn-default boton"
-                    value="Iniciar sesion">
-                </div>
-            </form>
+            </div>
+
+
+            </div>
         </div>
+
     </div>
+
 {% endblock %}

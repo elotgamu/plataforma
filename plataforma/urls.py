@@ -13,8 +13,9 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
-from django.contrib import admin
+from django.conf.urls import url, include
+from publicidad.admin import mi_contenido
+# from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from publicidad import views
 
@@ -30,7 +31,8 @@ urlpatterns = [
     url(r'^detalles_negocio/(?P<pk>[0-9]+)/$', views.NegoDetails.as_view(),
         name='detalle-negocio'),
     url(r'^agregar_cliente/', views.add_customer, name='newcustomer'),
-    url(r'^admin/', admin.site.urls),
-    url(r'^accounts/login/$', auth_views.login, name='login'),
+    # url(r'^admin/', admin.site.urls),
+    url(r'^mi_contenido/', include(mi_contenido.urls)),
+    url(r'^login/$', views.login_view, name='login'),
     url(r'^accounts/logout/$', auth_views.logout, name='logout'),
 ]

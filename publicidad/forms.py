@@ -2,7 +2,7 @@ from django import forms
 from django.forms import ModelForm
 from .models import Administrator, Customer, Negocio
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth import authenticate
+from django.utils.translation import ugettext_lazy as _
 
 
 class negocio_form(ModelForm):
@@ -78,39 +78,9 @@ class auth_form(AuthenticationForm):
     password = forms.CharField(max_length=30,
                                widget=forms.PasswordInput(attrs={
                                                     'class': 'form-control',
-                                                    'name': 'password'
-                                                                }))
-
-    this_login = forms.BooleanField(widget=forms.HiddenInput,
-                                    initial=1,
-                                    error_messages={
-                                        'required': 'Su sesion ha expirado'
-                                    })
-
-    def clean(self):
-        username = self.cleaned_data.get('username')
-        password = self.cleaned_data.get('password')
-        message = forms.ERROR_MESSAGE
-
-        if username and password:
-            self.user_cache = authenticate(username=username,
-                                           password=password)
-            if u'@' in username:
-                # Mistakenly entered e-mail address instead of username?
-                # Look it up.
-                try:
-                    user = Administrator.objects.get(email=username)
-                except (Administrator.DoesNotExist,
-                        Administrator.MultipleObjectsReturned):
-                    # Nothing to do here, moving along.
-                    pass
-                else:
-                    if user.check_password(password):
-                        message = ("Your e-mail address is not your "
-                                   "username."
-                                   " Try '%s' instead.") % user.username
-                raise forms.ValidationError(message)
-            # Removed check for is_staff here!
-            elif not self.user_cache.is_active:
-                raise forms.ValidationError(message)
-        return self.cleaned_data
+                                                    'name': 'password' }))
+    error_messages = {
+        'invalid_login': _("Please enter a correct %(username)s and password. "
+                           "Note that both fields may be case-sensitive."),
+        'inactive': _("This account is inactive."),
+    }
